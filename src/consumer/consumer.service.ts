@@ -21,8 +21,8 @@ export class ConsumerService implements OnModuleInit, OnApplicationShutdown {
       { topics: ["test"] },
       {
         eachMessage: async ({ topic, partition, message }) => {
-          const requestId: string = message.headers["x-request-id"] || uuid.v4();
-          const userAgent: string = message.headers["x-userAgent"]?.toString() || "";
+          const requestId: string = String(message.headers["x-request-id"]) || uuid.v4();
+          const userAgent: string = String(message.headers["x-test']) || "";
           const traceContext: TraceContext = {
             requestId,
             userAgent
